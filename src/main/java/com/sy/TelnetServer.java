@@ -63,6 +63,10 @@ public abstract class TelnetServer implements Runnable {
 		writer.flush();
 	}
 
+	/**
+	 * @return
+	 * @throws IOException
+	 */
 	public String readMessage() throws IOException {
 		StringBuilder inputBuffer = new StringBuilder(); // Buffer to accumulate characters
 
@@ -80,6 +84,7 @@ public abstract class TelnetServer implements Runnable {
 			} else if (inputChar == '\n' || inputChar == '\r') {
 				// Handle newline character - process the complete line
 				String inputLine = inputBuffer.toString();
+				br.readLine();
 				inputBuffer.setLength(0); // Clear the buffer for the next line
 				return inputLine;
 			} else {
