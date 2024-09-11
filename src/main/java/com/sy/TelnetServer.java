@@ -181,6 +181,8 @@ public abstract class TelnetServer implements Runnable {
 		try {
 			client.close();
 			clientIp.remove(client.getInetAddress().getHostName());
+			br.close();
+			writer.close();
 		} catch (IOException e) {
 		}
 	}
