@@ -121,7 +121,14 @@ public abstract class TelnetServer implements Runnable {
 		BLUE("\033[34m"),
 		MAGENTA("\033[35m"),
 		CYAN("\033[36m"),
-		WHITE("\033[37m");
+		WHITE("\033[37m"),
+		CRIMSONRED("\033[38;5;160m"),
+		ORANGE("\033[38;5;208m"),
+		DEEPSKYBLUE("\033[38;5;51m"),
+		LIMEGREEN("\033[38;5;82m"),
+		MAGENTAPINK("\033[38;5;201m"),
+		BRIGHTYELLOW("\033[38;5;11m"),
+		GRAY("\033[38;5;243m");
 
 		private final String code;
 
@@ -142,7 +149,14 @@ public abstract class TelnetServer implements Runnable {
 		BLUE("\033[44m"),
 		MAGENTA("\033[45m"),
 		CYAN("\033[46m"),
-		WHITE("\033[47m");
+		WHITE("\033[47m"),
+		CRIMSONRED("\033[48;5;160m"),
+		ORANGE("\033[48;5;208m"),
+		DEEPSKYBLUE("\033[48;5;51m"),
+		LIMEGREEN("\033[48;5;82m"),
+		MAGENTAPINK("\033[48;5;201m"),
+		BRIGHTYELLOW("\033[48;5;11m"),
+		GRAY("\033[48;5;243m");
 
 		private final String code;
 
@@ -165,6 +179,10 @@ public abstract class TelnetServer implements Runnable {
 
 	public void setBackGroundColor(BackGroundColor color) {
 		writeMessageNoLine(color.getCode());
+	}
+
+	public void resetAllStyleAndColor() {
+		writeMessageNoLine("\033[0m");
 	}
 
 	public void setColorNormal() {
