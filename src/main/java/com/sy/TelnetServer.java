@@ -54,7 +54,7 @@ public abstract class TelnetServer implements Runnable {
 	 *                Write message to the terminal
 	 */
 	public void writeMessage(String message) {
-		writer.println(message);
+		writer.print(message + "\r\n");
 		writer.flush();
 	}
 
