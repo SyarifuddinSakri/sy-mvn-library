@@ -37,6 +37,7 @@ public abstract class TelnetServer implements Runnable {
 					try {
 						br = new BufferedReader(new InputStreamReader(client.getInputStream()));
 						writer = new PrintWriter(client.getOutputStream());
+						writer.flush();
 						runAbstraction();
 					} catch (IOException e) {
 						e.printStackTrace();
