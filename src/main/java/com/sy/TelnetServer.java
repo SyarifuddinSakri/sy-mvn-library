@@ -84,12 +84,15 @@ public abstract class TelnetServer implements Runnable {
 			} else if (inputChar == '\n' || inputChar == '\r') {
 				// Handle newline character - process the complete line
 				String inputLine = inputBuffer.toString();
+				inputLine = inputLine.replaceAll("\\p{Cntrl}", "");
 				br.readLine();
 				inputBuffer.setLength(0); // Clear the buffer for the next line
 				return inputLine;
 			} else {
 				// Handle other characters
-				inputBuffer.append(inputChar);
+				if (!Character.isISOControl(inputChar)) {
+					inputBuffer.append(inputChar);
+				}
 			}
 		}
 	}
