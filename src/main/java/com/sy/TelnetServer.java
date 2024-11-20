@@ -2,6 +2,7 @@ package com.sy;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
@@ -35,9 +36,13 @@ public abstract class TelnetServer implements Runnable {
 				client = server.accept();
 				Thread thread = new Thread(() -> {
 					try {
-						br = new BufferedReader(new InputStreamReader(client.getInputStream()));
+						InputStream iStream = client.getInputStream();
+						if (iStream.available() > 0) {
+							iStream.skip(iStream.available());// Skip all available byte
+						}
+						InputStreamReader iReader = new InputStreamReader(client.getInputStream());
+						br = new BufferedReader(iReader);
 						writer = new PrintWriter(client.getOutputStream());
-						writer.flush();
 						runAbstraction();
 					} catch (IOException e) {
 						e.printStackTrace();
